@@ -1,6 +1,12 @@
 # Home/Child Kanban
 
-**** This is a fork that includes a special case for Campaign Members - A very specific, but valuable case for my stakeholders :) **** 
+****************************************************************************************************************************
+14.6.2021 - From Victor
+This is a fork that includes a special case for Campaign Members - A very specific, but valuable case for my stakeholders.
+
+Shout outs to my Alma Mater, Appiphony! I ran into some Strike component code here while debugging :)
+****************************************************************************************************************************
+
 
 Home/Child Kanban or if the / or space is a problem HomeChildKanban
 This component is fully native and highly customizable Drag & Drop Kanban view that can be configured for any related lists and home pages enabling you to choose the object, group and summarize its key differentiators & its records' key information to be shown on the kanban tiles.
