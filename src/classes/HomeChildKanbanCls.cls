@@ -156,12 +156,27 @@ public with sharing class HomeChildKanbanCls {
                     Set<string> ExcVals = new Set<string>(ExcVal);
                     Map<string, list<sobject>> recMaps = new Map<string, list<sobject>>();
                     
-                    for(Schema.PicklistEntry s: allFieldMap.get(kabnanField).getDescribe().getpicklistValues()){
-                        if(!ExcVals.contains(s.getValue()) && s.isActive()){
-                            Pickvalslst.add(s.getValue());
-                            recMaps.put(s.getValue(), new List<sobject>());
-                            if(summField != null){
-                                aggQMap.put(s.getValue(), 0);    
+                    // Included an exception for Campaign Members.
+                    if (objName == 'CampaignMember' && kabnanField == 'Status') {
+                        List<CampaignMemberStatus> cmStatuses = [SELECT Id, Label
+                                                                 FROM CampaignMemberStatus
+                                                                 WHERE CampaignId = :ParentRecId];
+                        
+                        for (CampaignMemberStatus cmStatus : cmStatuses) {
+                            Pickvalslst.add(cmStatus.Label);
+                            recMaps.put(cmStatus.Label, new List<sobject>());
+                            if (summField != null) {
+                                aggQMap.put(cmStatus.Label, 0);
+                            }
+                        }
+                    } else {
+                        for(Schema.PicklistEntry s: allFieldMap.get(kabnanField).getDescribe().getpicklistValues()){
+                            if(!ExcVals.contains(s.getValue()) && s.isActive()){
+                                Pickvalslst.add(s.getValue());
+                                recMaps.put(s.getValue(), new List<sobject>());
+                                if(summField != null){
+                                    aggQMap.put(s.getValue(), 0);    
+                                }
                             }
                         }
                     }
