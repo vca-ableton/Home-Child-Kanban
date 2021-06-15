@@ -160,7 +160,8 @@ public with sharing class HomeChildKanbanCls {
                     if (objName == 'CampaignMember' && kabnanField == 'Status') {
                         List<CampaignMemberStatus> cmStatuses = [SELECT Id, Label
                                                                  FROM CampaignMemberStatus
-                                                                 WHERE CampaignId = :ParentRecId];
+                                                                 WHERE CampaignId = :ParentRecId
+                                                                 ORDER BY Label ASC];
                         
                         for (CampaignMemberStatus cmStatus : cmStatuses) {
                             Pickvalslst.add(cmStatus.Label);
